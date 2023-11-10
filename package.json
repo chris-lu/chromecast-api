@@ -7,17 +7,22 @@
     "test": "standard"
   },
   "dependencies": {
-    "castv2-client": "1.2.0",
+    "castv2-client": "chris-lu/node-castv2-client",
     "debug": "^4.1.1",
     "dns-txt": "^2.0.2",
     "mime": "^3.0.0",
     "multicast-dns": "^7.2.0",
     "node-ssdp": "^4.0.0",
-    "xml2js": "^0.4.23",
+    "xml2js": "^0.6.2",
     "youtube-remote": "^1.0.0"
   },
   "devDependencies": {
     "standard": "latest"
+  },
+  "overrides": {
+    "castv2-client": {
+      "castv2": "chris-lu/node-castv2"
+    }
   },
   "engines": {
     "node": ">=10.0.0"

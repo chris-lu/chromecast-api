@@ -20,9 +20,9 @@ npm install chromecast-api
 ```js
 const ChromecastAPI = require('chromecast-api')
 
-const client = new ChromecastAPI()
+const scanner = new ChromecastAPI()
 
-client.on('device', function (device) {
+scanner.on('device', function (device) {
   var mediaURL = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4';
 
   device.play(mediaURL, function (err) {
@@ -78,9 +78,9 @@ const media = {
   }
 }
 
-const client = new ChromecastAPI()
+const scanner = new ChromecastAPI()
 
-client.on('device', function (device) {
+scanner.on('device', function (device) {
   device.play(media, function (err) {
     if (!err) console.log('Playing in your chromecast')
   })
@@ -89,11 +89,11 @@ client.on('device', function (device) {
 
 ## API
 
-#### `const client = new ChromecastAPI()`
+#### `const scanner = new ChromecastAPI()`
 
-Initialize the client to start searching for chromecast devices.
+Initialize the scanner to start searching for chromecast devices.
 
-#### `client.on('device', callback)`
+#### `scanner.on('device', callback)`
 
 Listen for new devices by passing `callback(device)` in the callback parameter.
 
@@ -108,11 +108,7 @@ This is an example of the attributes of `device`:
 }
 ```
 
-#### `client.devices[...]`
-
-An array of all devices found by the client.
-
-#### `client.update()`
+#### `scanner.update()`
 
 Trigger the mDNS and SSDP search again. Warning: the `device` event will trigger again (it might return the same device).
 
