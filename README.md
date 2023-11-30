@@ -9,6 +9,8 @@ chromecast-api
 
 **chromecast-api** is a NodeJS module to play any content in your Chromecast device.
 
+_This branch is fixing multiple chromecast issues and intempestive disconnections._
+
 ## Installation
 
 ```sh
@@ -18,17 +20,19 @@ npm install chromecast-api
 ## Usage
 
 ```js
-const ChromecastAPI = require('chromecast-api')
+const ChromecastAPI = require('chromecast-api');
 
-const scanner = new ChromecastAPI()
+const scanner = new ChromecastAPI();
 
 scanner.on('device', function (device) {
-  var mediaURL = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4';
+  device.on('connected', () => {
+    var mediaURL = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4';
 
-  device.play(mediaURL, function (err) {
-    if (!err) console.log('Playing in your chromecast')
-  })
-})
+    device.play(mediaURL, function (err) {
+      if (!err) console.log('Playing in your chromecast');
+    });
+  });
+});
 ```
 
 ## Supported Apps
@@ -43,7 +47,7 @@ To include subtitles and a cover image, use an Object instead of a string in the
 **Note**: your subtitles must implement CORS.
 
 ```js
-const ChromecastAPI = require('chromecast-api')
+const ChromecastAPI = require('chromecast-api');
 
 const media = {
   url : 'http://commondatastorage.googleapis.com/gtv-videos-bucket/big_buck_bunny_1080p.mp4',
@@ -78,13 +82,15 @@ const media = {
   }
 }
 
-const scanner = new ChromecastAPI()
+const scanner = new ChromecastAPI();
 
 scanner.on('device', function (device) {
-  device.play(media, function (err) {
-    if (!err) console.log('Playing in your chromecast')
-  })
-})
+  device.on('connected', () => {
+    device.play(media, function (err) {
+      if (!err) console.log('Playing in your chromecast');
+    });
+  });
+});
 ```
 
 ## API
