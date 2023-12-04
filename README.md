@@ -1,12 +1,6 @@
 chromecast-api
 =================
 
-[![NPM Version](https://img.shields.io/npm/v/chromecast-api.svg)](https://www.npmjs.com/package/chromecast-api)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/alxhotel/chromecast-api/ci.yml?branch=master)](https://github.com/alxhotel/chromecast-api/actions)
-[![Dependency Status](https://img.shields.io/librariesio/release/npm/chromecast-api)](https://libraries.io/npm/chromecast-api)
-[![Standard - Javascript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-
 **chromecast-api** is a NodeJS module to play any content in your Chromecast device.
 
 _This branch is fixing multiple chromecast issues and intempestive disconnections._
@@ -39,6 +33,20 @@ scanner.on('device', function (device) {
 
 - Media (video and audio)
 - Youtube videos
+
+
+## Creating Custom Apps
+
+1. Create your google developement profile: https://developers.google.com/cast
+2. Register you device and application: https://developers.google.com/cast/docs/registration#devices
+3. In the code, register your new pplication / ID in Device.SUPPORTED_APPS or override the default application ID:
+```
+/** Define the custom application to register at https://cast.google.com/publish/#/overview */
+const DefaultMediaReceiver = require('castv2-client').DefaultMediaReceiver;
+
+/** You can override APP IDs with your custom application, or build a new DefaultMediaReceiver. */
+DefaultMediaReceiver.APP_ID = 'CC1AD845';
+```
 
 ## Subtitles and Cover
 
